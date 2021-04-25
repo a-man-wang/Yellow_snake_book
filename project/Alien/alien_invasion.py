@@ -17,18 +17,24 @@ class AlienInvasion:
         # 设置背景色
         # self.bg_color = (105, 139, 105)
 
+    def _check_events(self):
+        # 监听游戏和键盘事件
+        for envent in pygame.event.get():
+            if envent.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        # 每次循环重绘屏幕
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        # 让最近绘制的屏幕可见
+        pygame.display.flip()
+
     def run_game(self):
         """开始游戏主循环"""
         while True:
-            # 监听游戏和键盘事件
-            for envent in pygame.event.get():
-                if envent.type == pygame.QUIT:
-                    sys.exit()
-            # 每次循环重绘屏幕
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            # 让最近绘制的屏幕可见
-            pygame.display.flip()
+            self._check_events()
+            self._update_screen()
 
 
 if __name__ == '__main__':
