@@ -41,6 +41,10 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif envent.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif envent.key == pygame.K_UP:
+            self.ship.moving_top = True
+        elif envent.key == pygame.K_DOWN:
+            self.ship.moving_bottom = True
         elif envent.key == pygame.K_q:
             sys.exit()
         elif envent.key == pygame.K_SPACE:
@@ -52,6 +56,10 @@ class AlienInvasion:
             self.ship.moving_right = False
         elif envent.key == pygame.K_LEFT:
             self.ship.moving_left = False
+        elif envent.key == pygame.K_UP:
+            self.ship.moving_top = False
+        elif envent.key == pygame.K_DOWN:
+            self.ship.moving_bottom = False
 
     def _fire_bullet(self):
         """创建一颗子弹并将其加入编组bulltes中"""
@@ -65,7 +73,7 @@ class AlienInvasion:
         self.bullets.update()
         # 删除消失子弹
         for bullet in self.bullets.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.left >= self.settings.screen_width:
                 self.bullets.remove(bullet)
 
     def _update_screen(self):
