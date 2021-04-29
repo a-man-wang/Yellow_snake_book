@@ -9,6 +9,7 @@ from alien import Alien
 
 class AlienInvasion:
     """管理游戏资源和行为的类"""
+
     def __init__(self):
         """初始化游戏并创建游戏资源"""
         pygame.init()
@@ -39,17 +40,17 @@ class AlienInvasion:
         available_space_y = (self.settings.screen_heigh - (3 * alien_height) - ship_height)
         number_rows = available_space_y // (2 * alien_height)
         # 创建外星人群
-        for row_number in range(number_rows):
-            for alien_number in range(number_alien_x):
-                self._create_alien(alien_number, row_number)
+        # for row_number in range(number_rows):
+        for alien_number in range(number_alien_x):
+            self._create_alien(alien_number)
 
-    def _create_alien(self, alien_number, row_number):
+    def _create_alien(self, alien_number):
         """创建一个外星人并放在当前行"""
         alien = Alien(self)
         alien_width = alien.rect.width
         alien.x = alien_width + 2 * alien_width * alien_number
         alien.rect.x = alien.x
-        alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+        # alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
     def _check_events(self):
@@ -62,7 +63,7 @@ class AlienInvasion:
             elif envent.type == pygame.KEYUP:
                 self._check_keyup_events(envent)
 
-    def _check_keydown_events(self,envent):
+    def _check_keydown_events(self, envent):
         """响应按下按键"""
         if envent.key == pygame.K_RIGHT:
             # 向右移动飞船
@@ -73,7 +74,7 @@ class AlienInvasion:
             sys.exit()
         elif envent.key == pygame.K_SPACE:
             self._fire_bullet()
-            
+
     def _check_keyup_events(self, envent):
         """响应弹起按键"""
         if envent.key == pygame.K_RIGHT:

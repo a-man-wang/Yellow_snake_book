@@ -1,14 +1,15 @@
 import sys
 import pygame
+from random import randint
 
 from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
 
-
 class AlienInvasion:
     """管理游戏资源和行为的类"""
+
     def __init__(self):
         """初始化游戏并创建游戏资源"""
         pygame.init()
@@ -39,6 +40,8 @@ class AlienInvasion:
         available_space_y = (self.settings.screen_heigh - (3 * alien_height) - ship_height)
         number_rows = available_space_y // (2 * alien_height)
         # 创建外星人群
+        # number_rows = randint(0, number_rows)
+        # number_alien_x = randint(0, number_alien_x)
         for row_number in range(number_rows):
             for alien_number in range(number_alien_x):
                 self._create_alien(alien_number, row_number)
@@ -48,8 +51,10 @@ class AlienInvasion:
         alien = Alien(self)
         alien_width = alien.rect.width
         alien.x = alien_width + 2 * alien_width * alien_number
+        alien.x = randint(0, alien.x)
         alien.rect.x = alien.x
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
+        alien.rect.y = randint(0, alien.rect.y)
         self.aliens.add(alien)
 
     def _check_events(self):
@@ -62,24 +67,32 @@ class AlienInvasion:
             elif envent.type == pygame.KEYUP:
                 self._check_keyup_events(envent)
 
-    def _check_keydown_events(self,envent):
+    def _check_keydown_events(self, envent):
         """响应按下按键"""
         if envent.key == pygame.K_RIGHT:
             # 向右移动飞船
             self.ship.moving_right = True
         elif envent.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif envent.key == pygame.K_UP:
+            self.ship.moving_top = True
+        elif envent.key == pygame.K_DOWN:
+            self.ship.moving_bottom = True
         elif envent.key == pygame.K_q:
             sys.exit()
         elif envent.key == pygame.K_SPACE:
             self._fire_bullet()
-            
+
     def _check_keyup_events(self, envent):
         """响应弹起按键"""
         if envent.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif envent.key == pygame.K_LEFT:
             self.ship.moving_left = False
+        elif envent.key == pygame.K_UP:
+            self.ship.moving_top = False
+        elif envent.key == pygame.K_DOWN:
+            self.ship.moving_bottom = False
 
     def _fire_bullet(self):
         """创建一颗子弹并将其加入编组bulltes中"""
@@ -93,7 +106,7 @@ class AlienInvasion:
         self.bullets.update()
         # 删除消失子弹
         for bullet in self.bullets.copy():
-            if bullet.rect.bottom <= 0:
+            if bullet.rect.left >= self.settings.screen_width:
                 self.bullets.remove(bullet)
 
     def _update_screen(self):
@@ -112,7 +125,6 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullets()
-            # print(len(self.bullets))
             self._update_screen()
 
 
