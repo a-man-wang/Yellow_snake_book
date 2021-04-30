@@ -106,12 +106,17 @@ class AlienInvasion:
         # 让最近绘制的屏幕可见
         pygame.display.flip()
 
+    def _update_aliens(self):
+        """更新外星人群中所有外星人的位置"""
+        self.aliens.update()
+
     def run_game(self):
         """开始游戏主循环"""
         while True:
             self._check_events()
             self.ship.update()
             self._update_bullets()
+            self._update_aliens()
             # print(len(self.bullets))
             self._update_screen()
 
