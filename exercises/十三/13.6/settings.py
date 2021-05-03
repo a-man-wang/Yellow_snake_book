@@ -8,10 +8,10 @@ class Settings:
         self.bg_color = (230, 230, 230)
         # 飞船设置
         self.ship_speed = 2
-        self.ships_limit = 3
+        self.ships_limit = 1
         # 子弹设置
         self.bullet_speed = 1.5
-        self.bullet_width = 3000
+        self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = (60, 60, 60)
         self.bullet_allowed = 3

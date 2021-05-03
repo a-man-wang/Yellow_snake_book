@@ -107,11 +107,17 @@ class AlienInvasion:
                 self._change_fleet_direction()
                 break
 
+    def _check_kile_num(self):
+        """杀死几个外星人上游戏结束"""
+        if self.stats.kill_num >= 5:
+            self.stats.game_active = False
+
     def _change_fleet_direction(self):
         """将整群外星人下移，并改变他们的运动方向"""
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
+
 
     def _fire_bullet(self):
         """创建一颗子弹并将其加入编组bulltes中"""
@@ -134,6 +140,7 @@ class AlienInvasion:
         # 检查是否有子弹击中了外星人
         # 如果有，就删除相应的子弹和外星人
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, False, True)
+        self.stats.kill_num += len(collisions)
         if not self.aliens:
             # 删除现有的子弹并新建一群外星人
             self.bullets.empty()
@@ -175,6 +182,7 @@ class AlienInvasion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
+                self._check_kile_num()
             # print(len(self.bullets))
             self._update_screen()
 
