@@ -21,5 +21,11 @@ class Alien(Sprite):
 
     def update(self):
         """向下移动外星人"""
-        self.y += self.settings.alien_speed
-        self.rect.y = self.y
+        self.x -= (self.settings.alien_speed * self.settings.fleet_direction)
+        self.rect.x = self.x
+
+    def check_edges(self):
+        """如果位于屏幕边缘就返回True"""
+        screen_rect = self.screen.get_rect()
+        if self.rect.y == screen_rect.bottom or self.rect.y == 0:
+            return True
