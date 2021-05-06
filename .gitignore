@@ -5,4 +5,4 @@ reports/*
 logs/*
 */.idea/*
 */venv/*
-py3/*
+*/py3/*
