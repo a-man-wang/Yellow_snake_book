@@ -4,7 +4,7 @@ from pygame.sprite import Sprite
 
 class Ship(Sprite):
     """管理飞船的类"""
-    def __init__(self, ai_game):
+    def __init__(self,ai_game):
         """初始化飞船位置并设置其初始位置"""
         super().__init__()
         self.screen = ai_game.screen
