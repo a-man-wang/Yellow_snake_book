@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/project/Alien" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/exercises/十四" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/exercises/十四/14.2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/exercises/十四/14.3" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/project" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/py3" />
     </content>
