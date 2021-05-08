@@ -17,7 +17,7 @@ class Settings:
         # 外星人设置
         self.fleet_drop_speed = 10
         # 动态设置，加快游戏进程
-        self.speedup_scale = 10
+        self.speedup_scale = 1.5
         # 外星人分数提高速度
         self.score_scale = 1.5
         self.initialize_dynamic_settings()

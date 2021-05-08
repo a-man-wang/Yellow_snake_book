@@ -138,12 +138,10 @@ class AlienInvasion:
             hit_target = self._check_hit_target(bullet)
             print(hit_target)
             if hit_target:
-                if bullet.rect.x >= self.settings.screen_width:
-                    # if pygame.sprite.spritecollideany(self.target, self.bullets):
-                    self.hit_after(hit_target)
-                    self._ship_hit()
-                    self.bullets.remove(bullet)
-                    break
+                self.hit_after(hit_target)
+                self._ship_hit()
+                self.bullets.remove(bullet)
+                continue
             else:
                 if bullet.rect.x >= self.settings.screen_width:
                     # if pygame.sprite.spritecollideany(self.target, self.bullets):
@@ -162,12 +160,8 @@ class AlienInvasion:
     def hit_after(self, hit_target):
         if hit_target:
             self.settings.increase_speed()
-            print(self.settings.ships_limit)
-            print("中了")
         else:
             self.settings.ships_limit -= 1
-            print(self.settings.ships_limit)
-            print("没中")
 
     def _check_bullet_alien_collisions(self):
         """相应子弹和外星人碰撞"""

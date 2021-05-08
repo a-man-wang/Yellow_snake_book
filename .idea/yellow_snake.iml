@@ -8,9 +8,11 @@
       <sourceFolder url="file://$MODULE_DIR$/exercises/十四/14.2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/exercises/十四/14.3" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/project" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/project/Learning_log" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/project/Learning_log/learning_logs" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/py3" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.9 (ll_env)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
