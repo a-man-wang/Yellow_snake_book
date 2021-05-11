@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\WJT\Desktop\Doc\python\yellow_snake\project\Learning_log\db.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="db [2]" uuid="325926a5-cc20-463f-af65-6eb7dccc4799">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\WJT\Desktop\Doc\python\yellow_snake\exercises\eighteen\18.8\db.sqlite3</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
