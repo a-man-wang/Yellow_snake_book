@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Topic
+from .forms import TopicForm
 # Create your views here.
 
 
@@ -21,3 +22,8 @@ def topic(request, topic_id):
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, "entries": entries}
     return render(request, 'learning_logs/topic.html', context)
+
+
+def new_topic(request):
+    """添加新主题"""
+    pass
