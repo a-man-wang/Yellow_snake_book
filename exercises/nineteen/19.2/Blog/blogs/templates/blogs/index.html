@@ -1,0 +1,15 @@
+{% extends "blogs/base.html" %}
+{% block content %}
+<p>Blogs</p>
+<ul>
+    {% for blog in blogs %}
+    <li>
+        <a href="{% url 'blogs:blog' blog.id %}">{{ blog }}</a>
+    </li>
+    {% empty %}
+        <li>no topics have been added yet.</li>
+    {% endfor %}
+</ul>
+<p><a href="{% url 'blogs:new_blog' %}">Add New Blog</a></p>
+
+{% endblock content %}
