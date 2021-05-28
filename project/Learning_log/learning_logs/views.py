@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from .models import Topic, Entry
 from .forms import TopicForm, EntryForm
+from .tools import check_topic_owner
 # Create your views here.
 
 
@@ -21,6 +23,9 @@ def topics(request):
 def topic(request, topic_id):
     """吸纳hi单个主题及其所有条目"""
     topic = Topic.objects.get(id=topic_id)
+    # 确认请求主题属于当前用户
+    if check_topic_owner(request, topic):
+        raise Http404
     entries = topic.entry_set.order_by('-date_added')
     context = {'topic': topic, "entries": entries}
     return render(request, 'learning_logs/topic.html', context)
@@ -35,7 +40,9 @@ def new_topic(request):
         # post 提交了数据 对数据进行处理
         form = TopicForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            new_topic = form.save(commit=False)
+            new_topic.owner = request.user
+            new_topic.save()
             return redirect('learning_logs:topics')
     # 显示空表单，或者指出表单数据无效
     context = {'form': form}
@@ -46,6 +53,8 @@ def new_topic(request):
 def new_entry(request, topic_id):
     """在特定主题下添加新条目"""
     topic = Topic.objects.get(id=topic_id)
+    if check_topic_owner(request, topic):
+        raise Http404
     if request.method != 'POST':
         # 未提交数据。创建一个空表单
         form = EntryForm()
@@ -68,6 +77,8 @@ def edit_entry(request, entry_id):
     """编辑已有条目"""
     entry = Entry.objects.get(id=entry_id)
     topic = entry.topic
+    if check_topic_owner(request, topic):
+        raise Http404
     if request.method != 'POST':
         # 初次请求，使用当前条目完善表单
         form = EntryForm(instance=entry)

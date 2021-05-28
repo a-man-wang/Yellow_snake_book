@@ -1,0 +1,16 @@
+{% extends "blogs/base.html" %}
+{% block content %}
+<p>Blog: {{ blog }}</p>
+<p>Text:</p>
+<ul>
+        <li>
+            <p>{{ blog.date_added|date:'M d, Y H:i'}}</p>
+            <p>{{ text|linebreaks }}</p>
+            <p><a href="{% url 'blogs:edit_blog' blog.id %}">Edit Text</a></p>
+
+        </li>
+
+
+</ul>
+
+{% endblock content %}
